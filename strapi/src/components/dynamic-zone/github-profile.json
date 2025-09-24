@@ -1,0 +1,11 @@
+{
+  "collectionName": "components_dynamic_zone_github_profile",
+  "info": {
+    "displayName": "Github_Profile",
+    "icon": "github"
+  },
+  "options": {},
+  "attributes": {
+    "username": { "type": "string", "required": true }
+  }
+}

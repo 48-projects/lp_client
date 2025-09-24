@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_dynamic_zone_project_header",
+  "info": {
+    "displayName": "Project_Header",
+    "icon": "information"
+  },
+  "options": {},
+  "attributes": {
+    "project": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::project.project"
+    }
+  }
+}

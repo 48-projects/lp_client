@@ -1,0 +1,105 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "Projects"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": { "localized": true }
+      },
+      "component": "shared.seo"
+    },
+    "title": {
+      "pluginOptions": { "i18n": { "localized": true } },
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "pluginOptions": { "i18n": { "localized": true } },
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "summary": {
+      "pluginOptions": { "i18n": { "localized": true } },
+      "type": "text"
+    },
+    "description": {
+      "pluginOptions": { "i18n": { "localized": true } },
+      "type": "blocks"
+    },
+    "dynamic_zone": {
+      "pluginOptions": { "i18n": { "localized": true } },
+      "type": "dynamiczone",
+      "components": [
+        "dynamic-zone.features",
+        "dynamic-zone.faq",
+        "dynamic-zone.cta",
+        "dynamic-zone.team-grid",
+        "dynamic-zone.tech-stack",
+        "dynamic-zone.github-profile"
+      ]
+    },
+    "project_status": {
+      "type": "enumeration",
+      "enum": ["live", "beta", "archived"],
+      "default": "live"
+    },
+    "live_url": { "type": "string" },
+    "repo_url": { "type": "string" },
+    "docs_url": { "type": "string" },
+    "cover_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images", "files", "videos", "audios"],
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": ["images", "files", "videos", "audios"]
+    },
+    "frontend_tech": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tech.tech"
+    },
+    "backend_tech": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tech.tech"
+    },
+    "integrations": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tech.tech"
+    },
+    "features": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.steps",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "contributors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::contributor.contributor"
+    }
+  }
+}

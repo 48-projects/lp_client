@@ -9,7 +9,6 @@ interface DynamicZoneComponent {
   documentId?: string;
   [key: string]: unknown;
 }
-
 interface Props {
   dynamicZone: DynamicZoneComponent[];
   locale: string;
@@ -42,6 +41,21 @@ const componentMapping: { [key: string]: any } = {
   'dynamic-zone.faq': dynamic(() => import('./faq').then((mod) => mod.FAQ)),
   'dynamic-zone.related-products': dynamic(() =>
     import('./related-products').then((mod) => mod.RelatedProducts)
+  ),
+  'dynamic-zone.projects-grid': dynamic(() =>
+    import('./projects-grid').then((mod) => mod.ProjectsGrid)
+  ),
+  'dynamic-zone.team-grid': dynamic(() =>
+    import('./team-grid').then((mod) => mod.TeamGrid)
+  ),
+  'dynamic-zone.tech-stack': dynamic(() =>
+    import('./tech-stack').then((mod) => mod.TechStack)
+  ),
+  'dynamic-zone.project-header': dynamic(() =>
+    import('./project-header').then((mod) => mod.ProjectHeader)
+  ),
+  'dynamic-zone.github-profile': dynamic(() =>
+    import('./github-profile').then((mod) => mod.GithubProfile)
   ),
   'dynamic-zone.related-articles': dynamic(() =>
     import('./related-articles').then((mod) => mod.RelatedArticles)

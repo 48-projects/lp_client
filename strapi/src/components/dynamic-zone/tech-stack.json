@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_dynamic_zone_tech_stack",
+  "info": {
+    "displayName": "Tech_Stack",
+    "icon": "layer"
+  },
+  "options": {},
+  "attributes": {
+    "heading": { "type": "string" },
+    "sub_heading": { "type": "string" },
+    "group_by_category": { "type": "boolean", "default": true },
+    "tech": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tech.tech"
+    }
+  }
+}

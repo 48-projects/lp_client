@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_dynamic_zone_projects_grid",
+  "info": {
+    "displayName": "Projects_Grid",
+    "icon": "grid"
+  },
+  "options": {},
+  "attributes": {
+    "heading": { "type": "string" },
+    "sub_heading": { "type": "string" },
+    "layout": {
+      "type": "enumeration",
+      "enum": ["cards", "list"],
+      "default": "cards"
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project"
+    }
+  }
+}

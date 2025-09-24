@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contributors",
+  "info": {
+    "singularName": "contributor",
+    "pluralName": "contributors",
+    "displayName": "Contributors"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": { "type": "string", "required": true },
+    "username": { "type": "string", "required": true },
+    "role": { "type": "string" },
+    "bio": { "type": "text" },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "github_url": { "type": "string" },
+    "linkedin_url": { "type": "string" },
+    "website_url": { "type": "string" }
+  }
+}

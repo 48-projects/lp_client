@@ -34,10 +34,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,md,yml,yaml}": [
-      "yarn fix:format"
-    ],
-    "next/**/*.{js,jsx,ts,tsx}": [
-      "cd next && yarn lint --fix"
+      "prettier --write --cache"
     ]
   },
   "packageManager": "yarn@4.5.0"

@@ -1,13 +1,15 @@
 import { Metadata } from 'next';
 
 import ClientSlugHandler from '../ClientSlugHandler';
-import PageContent from '@/lib/shared/PageContent';
-import { generateMetadataObject } from '@/lib/shared/metadata';
-import fetchContentType from '@/lib/strapi/fetchContentType';
+import { PageContent, generateMetadataObject } from '@/lib/shared';
+import { fetchContentType } from '@/lib/strapi';
 
-export async function generateMetadata(props: {
+interface ProjectsPageProps {
   params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
+}
+export async function generateMetadata(
+  props: Readonly<ProjectsPageProps>
+): Promise<Metadata> {
   const params = await props.params;
   const pageData = await fetchContentType(
     'pages',
@@ -26,9 +28,7 @@ export async function generateMetadata(props: {
   return metadata;
 }
 
-export default async function ProjectsPage(props: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function ProjectsPage(props: Readonly<ProjectsPageProps>) {
   const params = await props.params;
   const pageData = await fetchContentType(
     'pages',

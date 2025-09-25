@@ -2,15 +2,18 @@ import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 import { Container } from '@/components/container';
-import { AmbientColor } from '@/components/decorations/ambient-color';
-import DynamicZoneManager from '@/components/dynamic-zone/manager';
-import { ProjectHeader } from '@/components/dynamic-zone/project-header';
-import { generateMetadataObject } from '@/lib/shared/metadata';
-import fetchContentType from '@/lib/strapi/fetchContentType';
+import { AmbientColor } from '@/components/decorations';
+import { DynamicZoneManager, ProjectHeader } from '@/components/dynamic-zone';
+import { generateMetadataObject } from '@/lib/shared';
+import { fetchContentType } from '@/lib/strapi';
 
-export async function generateMetadata(props: {
-  params: Promise<{ locale: string; slug: string }>;
-}): Promise<Metadata> {
+interface ProjectDetailPageProps {
+  params: Promise<{ slug: string; locale: string }>;
+}
+
+export async function generateMetadata(
+  props: Readonly<ProjectDetailPageProps>
+): Promise<Metadata> {
   const params = await props.params;
 
   const project = await fetchContentType(
@@ -27,9 +30,9 @@ export async function generateMetadata(props: {
   return metadata;
 }
 
-export default async function ProjectDetailPage(props: {
-  params: Promise<{ slug: string; locale: string }>;
-}) {
+export default async function ProjectDetailPage(
+  props: Readonly<ProjectDetailPageProps>
+) {
   const params = await props.params;
 
   const project = await fetchContentType(

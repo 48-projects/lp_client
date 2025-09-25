@@ -3,18 +3,16 @@ import { Metadata } from 'next';
 
 import ClientSlugHandler from '../ClientSlugHandler';
 import { Container } from '@/components/container';
-import { AmbientColor } from '@/components/decorations/ambient-color';
-import { FeatureIconContainer } from '@/components/dynamic-zone/features/feature-icon-container';
-import { Heading } from '@/components/elements/heading';
-import { Subheading } from '@/components/elements/subheading';
-import { Featured } from '@/components/products/featured';
-import { ProductItems } from '@/components/products/product-items';
-import { generateMetadataObject } from '@/lib/shared/metadata';
-import fetchContentType from '@/lib/strapi/fetchContentType';
+import { AmbientColor } from '@/components/decorations';
+import { FeatureIconContainer } from '@/components/dynamic-zone/features';
+import { Heading, Subheading } from '@/components/elements';
+import { Featured, ProductItems } from '@/components/products';
+import { generateMetadataObject } from '@/lib/shared';
+import { fetchContentType } from '@/lib/strapi';
 
-export async function generateMetadata(props: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: Readonly<{ params: Promise<{ locale: string }> }>
+): Promise<Metadata> {
   const params = await props.params;
 
   const pageData = await fetchContentType(
@@ -31,13 +29,12 @@ export async function generateMetadata(props: {
   const metadata = generateMetadataObject(seo);
   return metadata;
 }
-
-export default async function Products(props: {
+interface ProductsProps {
   params: Promise<{ locale: string }>;
-}) {
+}
+export default async function Products(props: Readonly<ProductsProps>) {
   const params = await props.params;
 
-  // Fetch the product-page and products data
   const productPage = await fetchContentType(
     'product-page',
     {

@@ -1,9 +1,8 @@
 import { Metadata } from 'next';
 
 import ClientSlugHandler from './ClientSlugHandler';
-import PageContent from '@/lib/shared/PageContent';
-import { generateMetadataObject } from '@/lib/shared/metadata';
-import fetchContentType from '@/lib/strapi/fetchContentType';
+import { PageContent, generateMetadataObject } from '@/lib/shared';
+import { fetchContentType } from '@/lib/strapi';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
@@ -26,10 +25,10 @@ export async function generateMetadata(props: {
   const metadata = generateMetadataObject(seo);
   return metadata;
 }
-
-export default async function HomePage(props: {
+interface HomePageProps {
   params: Promise<{ locale: string }>;
-}) {
+}
+export default async function HomePage(props: Readonly<HomePageProps>) {
   const params = await props.params;
 
   const pageData = await fetchContentType(

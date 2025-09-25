@@ -2,15 +2,15 @@ import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 import { Container } from '@/components/container';
-import { AmbientColor } from '@/components/decorations/ambient-color';
-import DynamicZoneManager from '@/components/dynamic-zone/manager';
-import { SingleProduct } from '@/components/products/single-product';
-import { generateMetadataObject } from '@/lib/shared/metadata';
-import fetchContentType from '@/lib/strapi/fetchContentType';
+import { AmbientColor } from '@/components/decorations';
+import { DynamicZoneManager } from '@/components/dynamic-zone';
+import { SingleProduct } from '@/components/products';
+import { generateMetadataObject } from '@/lib/shared';
+import { fetchContentType } from '@/lib/strapi';
 
-export async function generateMetadata(props: {
-  params: Promise<{ locale: string; slug: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: Readonly<{ params: Promise<{ locale: string; slug: string }> }>
+): Promise<Metadata> {
   const params = await props.params;
 
   const pageData = await fetchContentType(
@@ -27,9 +27,9 @@ export async function generateMetadata(props: {
   return metadata;
 }
 
-export default async function SingleProductPage(props: {
-  params: Promise<{ slug: string; locale: string }>;
-}) {
+export default async function SingleProductPage(
+  props: Readonly<{ params: Promise<{ slug: string; locale: string }> }>
+) {
   const params = await props.params;
 
   const product = await fetchContentType(

@@ -141,6 +141,17 @@ export interface DynamicZoneFormNextToSection extends Struct.ComponentSchema {
   };
 }
 
+export interface DynamicZoneGithubProfile extends Struct.ComponentSchema {
+  collectionName: 'components_dynamic_zone_github_profile';
+  info: {
+    displayName: 'Github_Profile';
+    icon: 'github';
+  };
+  attributes: {
+    username: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface DynamicZoneHero extends Struct.ComponentSchema {
   collectionName: 'components_dynamic_zone_heroes';
   info: {
@@ -197,6 +208,32 @@ export interface DynamicZonePricing extends Struct.ComponentSchema {
   };
 }
 
+export interface DynamicZoneProjectHeader extends Struct.ComponentSchema {
+  collectionName: 'components_dynamic_zone_project_header';
+  info: {
+    displayName: 'Project_Header';
+    icon: 'information';
+  };
+  attributes: {
+    project: Schema.Attribute.Relation<'oneToOne', 'api::project.project'>;
+  };
+}
+
+export interface DynamicZoneProjectsGrid extends Struct.ComponentSchema {
+  collectionName: 'components_dynamic_zone_projects_grid';
+  info: {
+    displayName: 'Projects_Grid';
+    icon: 'grid';
+  };
+  attributes: {
+    heading: Schema.Attribute.String;
+    layout: Schema.Attribute.Enumeration<['cards', 'list']> &
+      Schema.Attribute.DefaultTo<'cards'>;
+    projects: Schema.Attribute.Relation<'oneToMany', 'api::project.project'>;
+    sub_heading: Schema.Attribute.String;
+  };
+}
+
 export interface DynamicZoneRelatedArticles extends Struct.ComponentSchema {
   collectionName: 'components_dynamic_zone_related_articles';
   info: {
@@ -221,6 +258,37 @@ export interface DynamicZoneRelatedProducts extends Struct.ComponentSchema {
     heading: Schema.Attribute.String;
     products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     sub_heading: Schema.Attribute.String;
+  };
+}
+
+export interface DynamicZoneTeamGrid extends Struct.ComponentSchema {
+  collectionName: 'components_dynamic_zone_team_grid';
+  info: {
+    displayName: 'Team_Grid';
+    icon: 'users';
+  };
+  attributes: {
+    contributors: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contributor.contributor'
+    >;
+    heading: Schema.Attribute.String;
+    sub_heading: Schema.Attribute.String;
+  };
+}
+
+export interface DynamicZoneTechStack extends Struct.ComponentSchema {
+  collectionName: 'components_dynamic_zone_tech_stack';
+  info: {
+    displayName: 'Tech_Stack';
+    icon: 'layer';
+  };
+  attributes: {
+    group_by_category: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    heading: Schema.Attribute.String;
+    sub_heading: Schema.Attribute.String;
+    tech: Schema.Attribute.Relation<'oneToMany', 'api::tech.tech'>;
   };
 }
 
@@ -517,12 +585,17 @@ declare module '@strapi/strapi' {
       'dynamic-zone.faq': DynamicZoneFaq;
       'dynamic-zone.features': DynamicZoneFeatures;
       'dynamic-zone.form-next-to-section': DynamicZoneFormNextToSection;
+      'dynamic-zone.github-profile': DynamicZoneGithubProfile;
       'dynamic-zone.hero': DynamicZoneHero;
       'dynamic-zone.how-it-works': DynamicZoneHowItWorks;
       'dynamic-zone.launches': DynamicZoneLaunches;
       'dynamic-zone.pricing': DynamicZonePricing;
+      'dynamic-zone.project-header': DynamicZoneProjectHeader;
+      'dynamic-zone.projects-grid': DynamicZoneProjectsGrid;
       'dynamic-zone.related-articles': DynamicZoneRelatedArticles;
       'dynamic-zone.related-products': DynamicZoneRelatedProducts;
+      'dynamic-zone.team-grid': DynamicZoneTeamGrid;
+      'dynamic-zone.tech-stack': DynamicZoneTechStack;
       'dynamic-zone.testimonials': DynamicZoneTestimonials;
       'global.footer': GlobalFooter;
       'global.navbar': GlobalNavbar;

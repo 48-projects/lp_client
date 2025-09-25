@@ -5,9 +5,9 @@ import React from 'react';
 
 import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar';
-import { CartProvider } from '@/context/cart-context';
-import { generateMetadataObject } from '@/lib/shared/metadata';
-import fetchContentType from '@/lib/strapi/fetchContentType';
+import { CartProvider } from '@/context';
+import { generateMetadataObject } from '@/lib/shared';
+import { fetchContentType } from '@/lib/strapi';
 import { cn } from '@/lib/utils';
 
 const inter = Inter({
@@ -16,7 +16,6 @@ const inter = Inter({
   weight: ['400', '500', '600', '700', '800', '900'],
 });
 
-// Default Global SEO for pages without them
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
@@ -34,11 +33,11 @@ export async function generateMetadata(props: {
   const metadata = generateMetadataObject(seo);
   return metadata;
 }
-
-export default async function LocaleLayout(props: {
+interface LocaleLayoutProps {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
-}) {
+}
+export default async function LocaleLayout(props: Readonly<LocaleLayoutProps>) {
   const params = await props.params;
 
   const { locale } = params;

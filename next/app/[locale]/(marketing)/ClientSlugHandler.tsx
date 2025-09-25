@@ -1,15 +1,15 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-import { useSlugContext } from '@/app/context/SlugContext';
+import { useSlugContext } from '@/app/context';
 
+interface ClientSlugHandlerProps {
+  localizedSlugs: Record<string, string>;
+}
 export default function ClientSlugHandler({
   localizedSlugs,
-}: {
-  localizedSlugs: Record<string, string>;
-}) {
+}: Readonly<ClientSlugHandlerProps>) {
   const { dispatch } = useSlugContext();
 
   useEffect(() => {
@@ -18,5 +18,5 @@ export default function ClientSlugHandler({
     }
   }, [localizedSlugs, dispatch]);
 
-  return null; // This component only handles the state and doesn't render anything.
+  return null;
 }

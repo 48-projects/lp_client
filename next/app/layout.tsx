@@ -4,7 +4,7 @@ import { Locale, i18n } from '@/i18n.config';
 
 import './globals.css';
 
-import { SlugProvider } from './context/SlugContext';
+import { SlugProvider } from '@/app/context';
 import { Preview } from '@/components/preview';
 
 export const viewport: Viewport = {
@@ -17,12 +17,10 @@ export const viewport: Viewport = {
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
-
-export default function RootLayout({
-  children,
-}: {
+interface RootLayoutProps {
   children: React.ReactNode;
-}) {
+}
+export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>

@@ -5,17 +5,16 @@ import ClientSlugHandler from '../ClientSlugHandler';
 import { BlogCard } from '@/components/blog-card';
 import { BlogPostRows } from '@/components/blog-post-rows';
 import { Container } from '@/components/container';
-import { AmbientColor } from '@/components/decorations/ambient-color';
-import { FeatureIconContainer } from '@/components/dynamic-zone/features/feature-icon-container';
-import { Heading } from '@/components/elements/heading';
-import { Subheading } from '@/components/elements/subheading';
-import { generateMetadataObject } from '@/lib/shared/metadata';
-import fetchContentType from '@/lib/strapi/fetchContentType';
+import { AmbientColor } from '@/components/decorations';
+import { FeatureIconContainer } from '@/components/dynamic-zone/features';
+import { Heading, Subheading } from '@/components/elements';
+import { generateMetadataObject } from '@/lib/shared';
+import { fetchContentType } from '@/lib/strapi';
 import { Article } from '@/types/types';
 
-export async function generateMetadata(props: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: Readonly<{ params: Promise<{ locale: string }> }>
+): Promise<Metadata> {
   const params = await props.params;
   const pageData = await fetchContentType(
     'blog-page',
@@ -31,9 +30,9 @@ export async function generateMetadata(props: {
   return metadata;
 }
 
-export default async function Blog(props: {
-  params: Promise<{ locale: string; slug: string }>;
-}) {
+export default async function Blog(
+  props: Readonly<{ params: Promise<{ locale: string; slug: string }> }>
+) {
   const params = await props.params;
   const blogPage = await fetchContentType(
     'blog-page',

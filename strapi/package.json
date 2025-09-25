@@ -9,7 +9,9 @@
     "build": "strapi build",
     "strapi": "strapi",
     "deploy": "strapi deploy",
-    "seed": "strapi import -f ./data/export_20250116105447.tar.gz",
+    "seed": "cd database && ./db-tool.sh import",
+    "export": "cd database && ./db-tool.sh export",
+    "db:tool": "cd database && ./db-tool.sh",
     "postinstall": "node ./scripts/updateUuid.js"
   },
   "devDependencies": {

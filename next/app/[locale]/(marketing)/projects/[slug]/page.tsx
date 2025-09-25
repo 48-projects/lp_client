@@ -2,24 +2,23 @@ import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 import { Container } from '@/components/container';
-import { AmbientColor } from '@/components/decorations';
-import { DynamicZoneManager, ProjectHeader } from '@/components/dynamic-zone';
-import { generateMetadataObject } from '@/lib/shared';
-import { fetchContentType } from '@/lib/strapi';
+import { AmbientColor } from '@/components/decorations/ambient-color';
+import DynamicZoneManager from '@/components/dynamic-zone/manager';
+import { ProjectHeader } from '@/components/dynamic-zone/project-header';
+import { SingleProject } from '@/components/projects/single-project';
+import { generateMetadataObject } from '@/lib/shared/metadata';
+import fetchContentType from '@/lib/strapi/fetchContentType';
 
-interface ProjectDetailPageProps {
-  params: Promise<{ slug: string; locale: string }>;
-}
-
-export async function generateMetadata(
-  props: Readonly<ProjectDetailPageProps>
-): Promise<Metadata> {
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
   const params = await props.params;
 
   const project = await fetchContentType(
     'projects',
     {
       filters: { slug: params.slug },
+      locale: params.locale,
       populate: 'seo.metaImage',
     },
     true
@@ -30,15 +29,16 @@ export async function generateMetadata(
   return metadata;
 }
 
-export default async function ProjectDetailPage(
-  props: Readonly<ProjectDetailPageProps>
-) {
+export default async function ProjectDetailPage(props: {
+  params: Promise<{ slug: string; locale: string }>;
+}) {
   const params = await props.params;
 
   const project = await fetchContentType(
     'projects',
     {
       filters: { slug: params.slug },
+      locale: params.locale,
     },
     true
   );
@@ -52,6 +52,9 @@ export default async function ProjectDetailPage(
       <AmbientColor />
       <Container className="py-20 md:py-40">
         <ProjectHeader project={project} />
+        <div className="mt-10">
+          <SingleProject project={project} />
+        </div>
         {project?.dynamic_zone && (
           <DynamicZoneManager
             dynamicZone={project?.dynamic_zone}

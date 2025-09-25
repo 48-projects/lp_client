@@ -51,7 +51,9 @@
         "dynamic-zone.cta",
         "dynamic-zone.team-grid",
         "dynamic-zone.tech-stack",
-        "dynamic-zone.github-profile"
+        "dynamic-zone.github-profile",
+        "dynamic-zone.simple-features-grid",
+        "dynamic-zone.simple-features-hover"
       ]
     },
     "project_status": {

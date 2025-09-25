@@ -1,11 +1,11 @@
 'use client';
 
-import Link from 'next/link';
 import React from 'react';
 
 import { Container } from '@/components/container';
 import { Heading } from '@/components/elements/heading';
 import { Subheading } from '@/components/elements/subheading';
+import { LinkPreview } from '@/components/ui/link-preview';
 import { StrapiImage } from '@/components/ui/strapi-image';
 
 export const ProjectHeader = ({ project }: { project: any }) => {
@@ -23,22 +23,20 @@ export const ProjectHeader = ({ project }: { project: any }) => {
             )}
             <div className="flex gap-3 mt-8">
               {project.live_url && (
-                <Link
-                  href={project.live_url}
-                  target="_blank"
+                <LinkPreview
+                  url={project.live_url}
                   className="inline-flex items-center px-4 py-2 rounded-md bg-white text-black font-medium hover:bg-neutral-200"
                 >
                   Live Demo
-                </Link>
+                </LinkPreview>
               )}
               {project.repo_url && (
-                <Link
-                  href={project.repo_url}
-                  target="_blank"
+                <LinkPreview
+                  url={project.repo_url}
                   className="inline-flex items-center px-4 py-2 rounded-md border border-neutral-700 text-white hover:bg-neutral-800"
                 >
                   View Code
-                </Link>
+                </LinkPreview>
               )}
             </div>
           </div>

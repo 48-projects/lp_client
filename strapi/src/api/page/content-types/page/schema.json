@@ -58,7 +58,9 @@
         "dynamic-zone.team-grid",
         "dynamic-zone.tech-stack",
         "dynamic-zone.project-header",
-        "dynamic-zone.github-profile"
+        "dynamic-zone.github-profile",
+        "dynamic-zone.simple-features-grid",
+        "dynamic-zone.simple-features-hover"
       ]
     }
   }

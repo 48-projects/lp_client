@@ -261,6 +261,32 @@ export interface DynamicZoneRelatedProducts extends Struct.ComponentSchema {
   };
 }
 
+export interface DynamicZoneSimpleFeaturesGrid extends Struct.ComponentSchema {
+  collectionName: 'components_dynamic_zone_simple_features_grid';
+  info: {
+    displayName: 'Simple_Features_Grid';
+    icon: 'layer';
+  };
+  attributes: {
+    features: Schema.Attribute.Component<'shared.steps', true>;
+    heading: Schema.Attribute.String;
+    sub_heading: Schema.Attribute.String;
+  };
+}
+
+export interface DynamicZoneSimpleFeaturesHover extends Struct.ComponentSchema {
+  collectionName: 'components_dynamic_zone_simple_features_hover';
+  info: {
+    displayName: 'Simple_Features_Hover';
+    icon: 'layer';
+  };
+  attributes: {
+    features: Schema.Attribute.Component<'shared.steps', true>;
+    heading: Schema.Attribute.String;
+    sub_heading: Schema.Attribute.String;
+  };
+}
+
 export interface DynamicZoneTeamGrid extends Struct.ComponentSchema {
   collectionName: 'components_dynamic_zone_team_grid';
   info: {
@@ -440,6 +466,19 @@ export interface SharedButton extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedFeature extends Struct.ComponentSchema {
+  collectionName: 'components_shared_feature';
+  info: {
+    displayName: 'Feature';
+    icon: 'check';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    icon: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedForm extends Struct.ComponentSchema {
   collectionName: 'components_shared_forms';
   info: {
@@ -554,6 +593,7 @@ export interface SharedSteps extends Struct.ComponentSchema {
   };
   attributes: {
     description: Schema.Attribute.String;
+    icon: Schema.Attribute.String;
     title: Schema.Attribute.String;
   };
 }
@@ -594,6 +634,8 @@ declare module '@strapi/strapi' {
       'dynamic-zone.projects-grid': DynamicZoneProjectsGrid;
       'dynamic-zone.related-articles': DynamicZoneRelatedArticles;
       'dynamic-zone.related-products': DynamicZoneRelatedProducts;
+      'dynamic-zone.simple-features-grid': DynamicZoneSimpleFeaturesGrid;
+      'dynamic-zone.simple-features-hover': DynamicZoneSimpleFeaturesHover;
       'dynamic-zone.team-grid': DynamicZoneTeamGrid;
       'dynamic-zone.tech-stack': DynamicZoneTechStack;
       'dynamic-zone.testimonials': DynamicZoneTestimonials;
@@ -604,6 +646,7 @@ declare module '@strapi/strapi' {
       'items.left-navbar-items': ItemsLeftNavbarItems;
       'items.ray-items': ItemsRayItems;
       'shared.button': SharedButton;
+      'shared.feature': SharedFeature;
       'shared.form': SharedForm;
       'shared.launches': SharedLaunches;
       'shared.link': SharedLink;

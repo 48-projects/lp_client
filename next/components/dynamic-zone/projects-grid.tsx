@@ -6,6 +6,7 @@ import React from 'react';
 import { Container } from '@/components/container';
 import { Heading } from '@/components/elements/heading';
 import { Subheading } from '@/components/elements/subheading';
+import { AnimatedTooltip } from '@/components/ui/animated-tooltip';
 import { StrapiImage } from '@/components/ui/strapi-image';
 import { cn, truncate } from '@/lib/utils';
 
@@ -15,6 +16,12 @@ interface ProjectItem {
   slug: string;
   summary?: string;
   cover_image?: { url: string; alternativeText?: string } | null;
+  contributors?: Array<{
+    id: number;
+    name?: string;
+    role?: string;
+    avatar?: { url: string; alternativeText?: string } | null;
+  }>;
 }
 
 export const ProjectsGrid = ({
@@ -91,6 +98,25 @@ const ProjectCard = ({
           <p className="text-sm text-neutral-400 mt-2">
             {truncate(project.summary, 140)}
           </p>
+        )}
+        {project?.contributors && project.contributors.length > 0 && (
+          <div className="mt-4">
+            <AnimatedTooltip
+              items={project.contributors.map((c) => {
+                const [first, ...rest] = (c.name || '?').split(' ');
+                return {
+                  id: c.id,
+                  firstname: first || '?',
+                  lastname: rest.join(' '),
+                  job: c.role || '',
+                  image: {
+                    url: c.avatar?.url,
+                    alternativeText: c.avatar?.alternativeText,
+                  },
+                };
+              })}
+            />
+          </div>
         )}
       </div>
     </Link>

@@ -57,6 +57,12 @@ const componentMapping: { [key: string]: any } = {
   'dynamic-zone.github-profile': dynamic(() =>
     import('./github-profile').then((mod) => mod.GithubProfile)
   ),
+  'dynamic-zone.simple-features-grid': dynamic(() =>
+    import('./simple-features-grid').then((mod) => mod.SimpleFeaturesGrid)
+  ),
+  'dynamic-zone.simple-features-hover': dynamic(() =>
+    import('./simple-features-hover').then((mod) => mod.SimpleFeaturesHover)
+  ),
   'dynamic-zone.related-articles': dynamic(() =>
     import('./related-articles').then((mod) => mod.RelatedArticles)
   ),

@@ -4,7 +4,11 @@ const nextConfig = {
     root: process.cwd().replace('/next', ''),
   },
   images: {
-    remotePatterns: [{ hostname: process.env.IMAGE_HOSTNAME || 'localhost' }],
+    remotePatterns: [
+      { hostname: process.env.IMAGE_HOSTNAME || 'localhost' },
+      { hostname: 'api.microlink.io' },
+      { hostname: 'avatars.githubusercontent.com' },
+    ],
   },
   pageExtensions: ['ts', 'tsx'],
   async redirects() {
@@ -26,6 +30,7 @@ const nextConfig = {
 
       return redirections;
     } catch (error) {
+      console.warn('Failed to load redirections from Strapi', error);
       return [];
     }
   },

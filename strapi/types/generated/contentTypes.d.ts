@@ -742,6 +742,8 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'dynamic-zone.tech-stack',
         'dynamic-zone.project-header',
         'dynamic-zone.github-profile',
+        'dynamic-zone.simple-features-grid',
+        'dynamic-zone.simple-features-hover',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -965,6 +967,8 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
         'dynamic-zone.team-grid',
         'dynamic-zone.tech-stack',
         'dynamic-zone.github-profile',
+        'dynamic-zone.simple-features-grid',
+        'dynamic-zone.simple-features-hover',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -1087,6 +1091,7 @@ export interface ApiTechTech extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    github_org: Schema.Attribute.String;
     icon: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::tech.tech'> &

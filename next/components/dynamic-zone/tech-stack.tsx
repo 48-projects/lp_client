@@ -11,6 +11,7 @@ interface TechItem {
   name: string;
   category?: string;
   icon?: { url: string } | null;
+  github_org?: string | null;
 }
 
 export const TechStack = ({
@@ -56,9 +57,17 @@ export const TechStack = ({
                 {items.map((t) => (
                   <li
                     key={t.id}
-                    className="px-3 py-1 rounded-full text-sm bg-neutral-800 text-white border border-neutral-700"
+                    className="flex items-center gap-2 px-3 py-1 rounded-full text-sm bg-neutral-800 text-white border border-neutral-700"
                   >
-                    {t.name}
+                    {t.github_org && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={`https://avatars.githubusercontent.com/${t.github_org}`}
+                        alt={t.name}
+                        className="h-4 w-4 rounded-full"
+                      />
+                    )}
+                    <span>{t.name}</span>
                   </li>
                 ))}
               </ul>

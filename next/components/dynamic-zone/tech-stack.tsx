@@ -49,11 +49,11 @@ export const TechStack = ({
           {Object.entries(groups).map(([category, items]) => (
             <div key={category}>
               {group_by_category && (
-                <h3 className="text-neutral-300 text-sm uppercase tracking-widest mb-4">
+                <h3 className="text-neutral-300 text-sm uppercase tracking-widest mb-4 text-center">
                   {category}
                 </h3>
               )}
-              <ul className="flex flex-wrap gap-3">
+              <ul className="flex flex-wrap gap-3 justify-center">
                 {items.map((t) => (
                   <li
                     key={t.id}

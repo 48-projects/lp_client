@@ -104,14 +104,22 @@ const ProjectCard = ({
             <AnimatedTooltip
               items={project.contributors.map((c) => {
                 const [first, ...rest] = (c.name || '?').split(' ');
+                const ghFromUrl = (c as any).github_url
+                  ?.split('github.com/')[1]
+                  ?.split('/')?.[0];
+                const gh = (c as any).username || ghFromUrl || '';
                 return {
                   id: c.id,
                   firstname: first || '?',
                   lastname: rest.join(' '),
                   job: c.role || '',
                   image: {
-                    url: c.avatar?.url,
-                    alternativeText: c.avatar?.alternativeText,
+                    url:
+                      c.avatar?.url ||
+                      (gh
+                        ? `https://avatars.githubusercontent.com/${gh}`
+                        : undefined),
+                    alternativeText: c.avatar?.alternativeText || c.name,
                   },
                 };
               })}

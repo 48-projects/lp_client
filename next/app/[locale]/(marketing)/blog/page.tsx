@@ -19,8 +19,7 @@ export async function generateMetadata(
   const pageData = await fetchContentType(
     'blog-page',
     {
-      filters: { locale: params.locale },
-      populate: 'seo.metaImage',
+      locale: params.locale,
     },
     true
   );
@@ -37,14 +36,14 @@ export default async function Blog(
   const blogPage = await fetchContentType(
     'blog-page',
     {
-      filters: { locale: params.locale },
+      locale: params.locale,
     },
     true
   );
   const articles = await fetchContentType(
     'articles',
     {
-      filters: { locale: params.locale },
+      locale: params.locale,
     },
     false
   );

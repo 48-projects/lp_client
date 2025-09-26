@@ -28,9 +28,6 @@ const componentMapping: { [key: string]: any } = {
   'dynamic-zone.brands': dynamic(() =>
     import('./brands').then((mod) => mod.Brands)
   ),
-  'dynamic-zone.pricing': dynamic(() =>
-    import('./pricing').then((mod) => mod.Pricing)
-  ),
   'dynamic-zone.launches': dynamic(() =>
     import('./launches').then((mod) => mod.Launches)
   ),
@@ -39,9 +36,6 @@ const componentMapping: { [key: string]: any } = {
     import('./form-next-to-section').then((mod) => mod.FormNextToSection)
   ),
   'dynamic-zone.faq': dynamic(() => import('./faq').then((mod) => mod.FAQ)),
-  'dynamic-zone.related-products': dynamic(() =>
-    import('./related-products').then((mod) => mod.RelatedProducts)
-  ),
   'dynamic-zone.projects-grid': dynamic(() =>
     import('./projects-grid').then((mod) => mod.ProjectsGrid)
   ),
@@ -62,9 +56,6 @@ const componentMapping: { [key: string]: any } = {
   ),
   'dynamic-zone.simple-features-hover': dynamic(() =>
     import('./simple-features-hover').then((mod) => mod.SimpleFeaturesHover)
-  ),
-  'dynamic-zone.related-articles': dynamic(() =>
-    import('./related-articles').then((mod) => mod.RelatedArticles)
   ),
 };
 

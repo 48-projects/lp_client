@@ -17,6 +17,8 @@ type Contributor = {
   id: number;
   name?: string;
   role?: string;
+  username?: string | null;
+  github_url?: string | null;
   avatar?: { url: string; alternativeText?: string } | null;
 };
 
@@ -50,11 +52,19 @@ export const SingleProject = ({ project }: { project: Project }) => {
   }, [project.cover_image, project.gallery]);
 
   const allTech: Tech[] = useMemo(() => {
-    return [
+    const merged = [
       ...(project.frontend_tech || []),
       ...(project.backend_tech || []),
       ...(project.integrations || []),
     ];
+    const seen = new Set<number>();
+    const unique: Tech[] = [];
+    for (const t of merged) {
+      if (!t || seen.has(t.id)) continue;
+      seen.add(t.id);
+      unique.push(t);
+    }
+    return unique;
   }, [project.frontend_tech, project.backend_tech, project.integrations]);
 
   return (
@@ -165,14 +175,23 @@ export const SingleProject = ({ project }: { project: Project }) => {
               <AnimatedTooltip
                 items={project.contributors.map((c) => {
                   const [first, ...rest] = (c.name || '?').split(' ');
+                  const ghFromUrl = c.github_url
+                    ?.split('github.com/')[1]
+                    ?.split('/')?.[0];
+                  const gh = c.username || ghFromUrl || '';
+                  const imageUrl =
+                    c.avatar?.url ||
+                    (gh
+                      ? `https://avatars.githubusercontent.com/${gh}`
+                      : undefined);
                   return {
                     id: c.id,
                     firstname: first || '?',
                     lastname: rest.join(' '),
                     job: c.role || '',
                     image: {
-                      url: c.avatar?.url,
-                      alternativeText: c.avatar?.alternativeText,
+                      url: imageUrl,
+                      alternativeText: c.avatar?.alternativeText || c.name,
                     },
                   };
                 })}

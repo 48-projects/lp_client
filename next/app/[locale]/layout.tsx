@@ -5,7 +5,6 @@ import React from 'react';
 
 import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar';
-import { CartProvider } from '@/context';
 import { generateMetadataObject } from '@/lib/shared';
 import { fetchContentType } from '@/lib/strapi';
 import { cn } from '@/lib/utils';
@@ -23,8 +22,7 @@ export async function generateMetadata(props: {
   const pageData = await fetchContentType(
     'global',
     {
-      filters: { locale: params.locale },
-      populate: 'seo.metaImage',
+      locale: params.locale,
     },
     true
   );
@@ -44,25 +42,16 @@ export default async function LocaleLayout(props: Readonly<LocaleLayoutProps>) {
 
   const { children } = props;
 
-  const pageData = await fetchContentType(
-    'global',
-    { filters: { locale } },
-    true
-  );
+  const pageData = await fetchContentType('global', { locale }, true);
   return (
     <ViewTransitions>
-      <CartProvider>
-        <div
-          className={cn(
-            inter.className,
-            'bg-charcoal antialiased h-full w-full'
-          )}
-        >
-          <Navbar data={pageData.navbar} locale={locale} />
-          {children}
-          <Footer data={pageData.footer} locale={locale} />
-        </div>
-      </CartProvider>
+      <div
+        className={cn(inter.className, 'bg-charcoal antialiased h-full w-full')}
+      >
+        <Navbar data={pageData.navbar} locale={locale} />
+        {children}
+        <Footer data={pageData.footer} locale={locale} />
+      </div>
     </ViewTransitions>
   );
 }

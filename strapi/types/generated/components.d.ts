@@ -194,20 +194,6 @@ export interface DynamicZoneLaunches extends Struct.ComponentSchema {
   };
 }
 
-export interface DynamicZonePricing extends Struct.ComponentSchema {
-  collectionName: 'components_dynamic_zone_pricings';
-  info: {
-    description: '';
-    displayName: 'Pricing';
-    icon: 'shoppingCart';
-  };
-  attributes: {
-    heading: Schema.Attribute.String;
-    plans: Schema.Attribute.Relation<'oneToMany', 'api::plan.plan'>;
-    sub_heading: Schema.Attribute.String;
-  };
-}
-
 export interface DynamicZoneProjectHeader extends Struct.ComponentSchema {
   collectionName: 'components_dynamic_zone_project_header';
   info: {
@@ -230,33 +216,6 @@ export interface DynamicZoneProjectsGrid extends Struct.ComponentSchema {
     layout: Schema.Attribute.Enumeration<['cards', 'list']> &
       Schema.Attribute.DefaultTo<'cards'>;
     projects: Schema.Attribute.Relation<'oneToMany', 'api::project.project'>;
-    sub_heading: Schema.Attribute.String;
-  };
-}
-
-export interface DynamicZoneRelatedArticles extends Struct.ComponentSchema {
-  collectionName: 'components_dynamic_zone_related_articles';
-  info: {
-    description: '';
-    displayName: 'related_articles';
-    icon: 'bulletList';
-  };
-  attributes: {
-    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
-    heading: Schema.Attribute.String;
-    sub_heading: Schema.Attribute.String;
-  };
-}
-
-export interface DynamicZoneRelatedProducts extends Struct.ComponentSchema {
-  collectionName: 'components_dynamic_zone_related_products';
-  info: {
-    displayName: 'Related_Products';
-    icon: 'stack';
-  };
-  attributes: {
-    heading: Schema.Attribute.String;
-    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     sub_heading: Schema.Attribute.String;
   };
 }
@@ -466,19 +425,6 @@ export interface SharedButton extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedFeature extends Struct.ComponentSchema {
-  collectionName: 'components_shared_feature';
-  info: {
-    displayName: 'Feature';
-    icon: 'check';
-  };
-  attributes: {
-    description: Schema.Attribute.Text;
-    icon: Schema.Attribute.String;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
-  };
-}
-
 export interface SharedForm extends Struct.ComponentSchema {
   collectionName: 'components_shared_forms';
   info: {
@@ -517,18 +463,6 @@ export interface SharedLink extends Struct.ComponentSchema {
     >;
     text: Schema.Attribute.String;
     URL: Schema.Attribute.String;
-  };
-}
-
-export interface SharedPerks extends Struct.ComponentSchema {
-  collectionName: 'components_shared_perks';
-  info: {
-    description: '';
-    displayName: 'Perks';
-    icon: 'check';
-  };
-  attributes: {
-    text: Schema.Attribute.String;
   };
 }
 
@@ -629,11 +563,8 @@ declare module '@strapi/strapi' {
       'dynamic-zone.hero': DynamicZoneHero;
       'dynamic-zone.how-it-works': DynamicZoneHowItWorks;
       'dynamic-zone.launches': DynamicZoneLaunches;
-      'dynamic-zone.pricing': DynamicZonePricing;
       'dynamic-zone.project-header': DynamicZoneProjectHeader;
       'dynamic-zone.projects-grid': DynamicZoneProjectsGrid;
-      'dynamic-zone.related-articles': DynamicZoneRelatedArticles;
-      'dynamic-zone.related-products': DynamicZoneRelatedProducts;
       'dynamic-zone.simple-features-grid': DynamicZoneSimpleFeaturesGrid;
       'dynamic-zone.simple-features-hover': DynamicZoneSimpleFeaturesHover;
       'dynamic-zone.team-grid': DynamicZoneTeamGrid;
@@ -646,11 +577,9 @@ declare module '@strapi/strapi' {
       'items.left-navbar-items': ItemsLeftNavbarItems;
       'items.ray-items': ItemsRayItems;
       'shared.button': SharedButton;
-      'shared.feature': SharedFeature;
       'shared.form': SharedForm;
       'shared.launches': SharedLaunches;
       'shared.link': SharedLink;
-      'shared.perks': SharedPerks;
       'shared.section': SharedSection;
       'shared.seo': SharedSeo;
       'shared.social-media-icon-links': SharedSocialMediaIconLinks;

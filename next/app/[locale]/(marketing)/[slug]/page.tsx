@@ -13,9 +13,8 @@ export async function generateMetadata(
     {
       filters: {
         slug: params.slug,
-        locale: params.locale,
       },
-      populate: 'seo.metaImage',
+      locale: params.locale,
     },
     true
   );
@@ -34,19 +33,19 @@ export default async function Page(
     {
       filters: {
         slug: params.slug,
-        locale: params.locale,
       },
+      locale: params.locale,
     },
     true
   );
 
-  const localizedSlugs = pageData.localizations?.reduce(
+  const localizedSlugs = pageData?.localizations?.reduce(
     (acc: Record<string, string>, localization: any) => {
       acc[localization.locale] = localization.slug;
       return acc;
     },
     { [params.locale]: params.slug }
-  );
+  ) || { [params.locale]: params.slug };
 
   return (
     <>

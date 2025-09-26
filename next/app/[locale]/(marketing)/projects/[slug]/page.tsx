@@ -19,7 +19,6 @@ export async function generateMetadata(props: {
     {
       filters: { slug: params.slug },
       locale: params.locale,
-      populate: 'seo.metaImage',
     },
     true
   );
@@ -42,6 +41,8 @@ export default async function ProjectDetailPage(props: {
     },
     true
   );
+
+  console.log('Project detail page data:', JSON.stringify(project, null, 2));
 
   if (!project) {
     redirect(`/${params.locale}/projects`);

@@ -25,14 +25,19 @@ export const FAQ = ({
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-20">
         {faqs &&
-          faqs.map((faq: { question: string; answer: string }) => (
-            <div key={faq.question}>
-              <h4 className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-400">
-                {faq.question}
-              </h4>
-              <p className="mt-4 text-neutral-400">{faq.answer}</p>
-            </div>
-          ))}
+          faqs.map(
+            (
+              faq: { id?: number; question: string; answer: string },
+              index: number
+            ) => (
+              <div key={faq.id || `faq-${index}`}>
+                <h4 className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-400">
+                  {faq.question}
+                </h4>
+                <p className="mt-4 text-neutral-400">{faq.answer}</p>
+              </div>
+            )
+          )}
       </div>
     </Container>
   );

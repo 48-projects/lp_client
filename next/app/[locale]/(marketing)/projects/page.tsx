@@ -16,9 +16,8 @@ export async function generateMetadata(
     {
       filters: {
         slug: 'projects',
-        locale: params.locale,
       },
-      populate: 'seo.metaImage',
+      locale: params.locale,
     },
     true
   );
@@ -35,19 +34,20 @@ export default async function ProjectsPage(props: Readonly<ProjectsPageProps>) {
     {
       filters: {
         slug: 'projects',
-        locale: params.locale,
       },
+      locale: params.locale,
     },
     true
   );
+  console.log('Projects page data:', JSON.stringify(pageData, null, 2));
 
-  const localizedSlugs = pageData.localizations?.reduce(
+  const localizedSlugs = pageData?.localizations?.reduce(
     (acc: Record<string, string>, localization: any) => {
       acc[localization.locale] = 'projects';
       return acc;
     },
     { [params.locale]: 'projects' }
-  );
+  ) || { [params.locale]: 'projects' };
 
   return (
     <>

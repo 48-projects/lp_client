@@ -10,9 +10,11 @@ import {
 import React, { useState } from 'react';
 
 import { StrapiImage } from '@/components/ui/strapi-image';
+import { cn } from '@/lib/utils';
 
 export const AnimatedTooltip = ({
   items,
+  className,
 }: {
   items: {
     id: number;
@@ -21,6 +23,7 @@ export const AnimatedTooltip = ({
     job: string;
     image: any;
   }[];
+  className?: string;
 }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const springConfig = { stiffness: 100, damping: 5 };
@@ -41,11 +44,11 @@ export const AnimatedTooltip = ({
   };
 
   return (
-    <>
+    <div className={cn('flex items-center', className)}>
       {items.map((item) => (
         <div
           className="-mr-4  relative group"
-          key={item.firstname}
+          key={`${item.id}-${item.firstname}-${item.lastname}`}
           onMouseEnter={() => setHoveredIndex(item.id)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
@@ -90,6 +93,6 @@ export const AnimatedTooltip = ({
           />
         </div>
       ))}
-    </>
+    </div>
   );
 };

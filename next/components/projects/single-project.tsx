@@ -172,30 +172,32 @@ export const SingleProject = ({ project }: { project: Project }) => {
               <h3 className="text-sm font-medium text-neutral-400 mb-2">
                 Contributors
               </h3>
-              <AnimatedTooltip
-                items={project.contributors.map((c) => {
-                  const [first, ...rest] = (c.name || '?').split(' ');
-                  const ghFromUrl = c.github_url
-                    ?.split('github.com/')[1]
-                    ?.split('/')?.[0];
-                  const gh = c.username || ghFromUrl || '';
-                  const imageUrl =
-                    c.avatar?.url ||
-                    (gh
-                      ? `https://avatars.githubusercontent.com/${gh}`
-                      : undefined);
-                  return {
-                    id: c.id,
-                    firstname: first || '?',
-                    lastname: rest.join(' '),
-                    job: c.role || '',
-                    image: {
-                      url: imageUrl,
-                      alternativeText: c.avatar?.alternativeText || c.name,
-                    },
-                  };
-                })}
-              />
+              <div className="flex items-center">
+                <AnimatedTooltip
+                  items={project.contributors.map((c) => {
+                    const [first, ...rest] = (c.name || '?').split(' ');
+                    const ghFromUrl = c.github_url
+                      ?.split('github.com/')[1]
+                      ?.split('/')?.[0];
+                    const gh = c.username || ghFromUrl || '';
+                    const imageUrl =
+                      c.avatar?.url ||
+                      (gh
+                        ? `https://avatars.githubusercontent.com/${gh}`
+                        : undefined);
+                    return {
+                      id: c.id,
+                      firstname: first || '?',
+                      lastname: rest.join(' '),
+                      job: c.role || '',
+                      image: {
+                        url: imageUrl,
+                        alternativeText: c.avatar?.alternativeText || c.name,
+                      },
+                    };
+                  })}
+                />
+              </div>
             </div>
           )}
         </div>

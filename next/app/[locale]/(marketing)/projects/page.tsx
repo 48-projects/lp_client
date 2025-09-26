@@ -39,7 +39,6 @@ export default async function ProjectsPage(props: Readonly<ProjectsPageProps>) {
     },
     true
   );
-  console.log('Projects page data:', JSON.stringify(pageData, null, 2));
 
   const localizedSlugs = pageData?.localizations?.reduce(
     (acc: Record<string, string>, localization: any) => {

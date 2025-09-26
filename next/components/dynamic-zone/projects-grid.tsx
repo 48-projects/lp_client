@@ -102,6 +102,7 @@ const ProjectCard = ({
         {project?.contributors && project.contributors.length > 0 && (
           <div className="mt-4">
             <AnimatedTooltip
+              className="flex items-center"
               items={project.contributors.map((c) => {
                 const [first, ...rest] = (c.name || '?').split(' ');
                 const ghFromUrl = (c as any).github_url

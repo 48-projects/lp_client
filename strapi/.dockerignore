@@ -1,0 +1,28 @@
+# Exclude local artifacts from build context
+node_modules
+.yarn
+.yarnrc*
+.yarnrc.yml
+.yarnrc.yaml
+npm-debug.log
+yarn-error.log
+
+# VCS
+.git
+.gitignore
+
+# Env files
+.env
+.env.*
+
+# Build outputs and caches
+build
+dist
+.cache
+coverage
+.next
+out
+
+# Docker files themselves
+Dockerfile
+.dockerignore

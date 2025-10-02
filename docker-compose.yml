@@ -1,11 +1,11 @@
 services:
-  cms:
-    container_name: cms
+  strapi:
+    container_name: strapi
     build:
-      context: ../strapi
+      context: ./strapi
       dockerfile: Dockerfile
     # restart: unless-stopped
-    env_file: ../strapi/.env
+    env_file: ./strapi/.env
     environment:
       DATABASE_CLIENT: ${DATABASE_CLIENT}
       DATABASE_HOST: ${DATABASE_HOST}
@@ -18,10 +18,10 @@ services:
       ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
       APP_KEYS: ${APP_KEYS}
       NODE_ENV: ${NODE_ENV}
-    volumes:
-      # - ../strapi/config:/opt/app/config
-      # - ../strapi/src:/opt/app/src
-      # - ../strapi/public/uploads:/opt/app/public/uploads
+    # volumes:
+    # - ../strapi/config:/opt/app/config
+    # - ../strapi/src:/opt/app/src
+    # - ../strapi/public/uploads:/opt/app/public/uploads
     ports:
       - '${CMS_PORT:-1337}:1337'
     networks:
@@ -29,5 +29,5 @@ services:
 
 networks:
   default:
-    name: adaf-network
+    name: 48-network
     driver: bridge
